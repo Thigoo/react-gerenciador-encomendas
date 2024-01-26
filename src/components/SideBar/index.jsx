@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components';
+import '../SideBar/style.css'
 
 const SidebarWrapper = styled.div`
-  width: 200px; /* Largura da barra lateral */
+  width: 300px; /* Largura da barra lateral */
   height: 100%; /* Altura ocupando toda a altura da tela */
   background-color: #333; /* Cor de fundo */
   color: #fff; /* Cor do texto */
@@ -13,7 +14,6 @@ const SidebarWrapper = styled.div`
   @media screen and (max-width: 480px) {
     width: 100%;
     height: auto;
-    color: yellow;
     text-decoration: none;
     })
 `;
@@ -22,12 +22,12 @@ function SideBar() {
 
   return (
     <SidebarWrapper>
-      <Link to={'/'}
-        style={{
-          color: '#FFFFFF', textDecoration: 'none'
-        }}>
-        Home
-      </Link>
+      <div className="header">
+        <img src="#" alt="Logo" />
+      </div>
+      <div className='links'>
+      <Link to={'/'} className='link'>Home</Link>
+      </div>
     </SidebarWrapper>
   )
 }

@@ -7,13 +7,11 @@
     box-sizing: border-box;
 }
 
-.container {
-    display: flex;
-    height: 100vh;
+body, html, #root {
+    width: 100%;
 }
 
-@media (max-width: 480px) {
-    .container {
-        flex-direction: column;
-    }
+body {
+    height: 100vh;
+    display: flex;
 }

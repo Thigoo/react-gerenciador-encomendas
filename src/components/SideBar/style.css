@@ -1,0 +1,20 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: gray;
+    height: 100px;
+    margin-bottom: 2rem;
+}
+
+.links {
+    display: flex;
+}
+
+.link {
+    padding: 7px;
+    width: 100%;
+    background: gray;
+    color: #fafafa;
+    text-decoration: none;
+}
