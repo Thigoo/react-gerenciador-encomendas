@@ -12,11 +12,21 @@
 }
 
 .home-header {
-    width: 85%;
+    width: 90%;
     background: gray;
     border: 1px solid black;
     padding: 2rem;
     margin-top: 2rem;
+}
+
+.home-content {
+    width: 90%;
+}
+
+.home-button-add {
+    display: flex;
+    justify-content: flex-end;
+    width: 85%;
 }
 
 @media (max-width: 480px) {

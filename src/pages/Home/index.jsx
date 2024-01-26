@@ -1,7 +1,8 @@
 import React from 'react'
 import '../Home/style.css'
-import Card from '../../components/Card'
 import SideBar from '../../components/SideBar'
+import Button from '../../components/Button'
+import ResponsiveTable from '../../components/ResponsiveTable'
 
 function Home() {
   return (
@@ -11,8 +12,11 @@ function Home() {
         <div className="home-header">
           Minhas encomendas
         </div>
+        <div className="home-button-add">
+          <Button title={'Adicionar'}/>
+        </div>
         <div className="home-content">
-          <Card />
+          <ResponsiveTable />
         </div>
       </div>
     </div>
