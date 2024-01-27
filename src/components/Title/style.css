@@ -1,0 +1,13 @@
+.title-header {
+    width: 90%;
+    background: gray;
+    border: 1px solid #333;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 7px;
+    text-align: center;
+}
+
+.title-header h2 {
+    font-weight: normal;
+}

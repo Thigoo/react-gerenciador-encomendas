@@ -4,19 +4,12 @@
 }
 
 .home-main {
+    margin-left: 230px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     width: 100%;
-}
-
-.home-header {
-    width: 90%;
-    background: gray;
-    border: 1px solid black;
-    padding: 2rem;
-    margin-top: 2rem;
 }
 
 .home-content {
@@ -32,5 +25,8 @@
 @media (max-width: 480px) {
     .home-container {
         display: block;
+    }
+    .home-main {
+        margin-left: 0;
     }
 }

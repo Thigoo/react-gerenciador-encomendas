@@ -114,22 +114,50 @@ const ResponsiveComponent = () => {
 
   // Dados para exibir
   const data = [
-    {
-      cliente: 'Cliente 1',
-      data: '2022-01-01',
-      produto: 'Produto A',
-      valor: 100.0,
-      pago: true,
-    },
-    {
-      cliente: 'Cliente 2',
-      data: '2022-02-01',
-      produto: 'Produto B',
-      valor: 150.0,
-      pago: false,
-    },
+    
+      {
+        "cliente": "Kathy Wyman MD",
+        "data": "2023-02-01T02:21:18.929Z",
+        "produto": "Modern Frozen Chips",
+        "valor": "81.00",
+        "pago": false,
+        "id": "1"
+      },
+      {
+        "cliente": "Dr. Ora Hilll",
+        "data": "2021-04-19T22:35:58.510Z",
+        "produto": "Refined Granite Table",
+        "valor": "462.00",
+        "pago": true,
+        "id": "2"
+      },
+      {
+        "cliente": "Victor Kuhic",
+        "data": "2041-12-05T02:50:55.608Z",
+        "produto": "Gorgeous Metal Shirt",
+        "valor": "301.00",
+        "pago": false,
+        "id": "3"
+      },
+      {
+        "cliente": "Rodolfo Pouros",
+        "data": "2047-09-26T06:20:36.256Z",
+        "produto": "Handmade Metal Keyboard",
+        "valor": "369.00",
+        "pago": true,
+        "id": "4"
+      },
+      {
+        "cliente": "Josefina Braun",
+        "data": "2083-06-29T22:40:25.182Z",
+        "produto": "Small Bronze Tuna",
+        "valor": "147.00",
+        "pago": true,
+        "id": "5"
+      }
+    ]
     // Adicione mais objetos conforme necessário
-  ];
+  ;
 
   return (
     <Container>
