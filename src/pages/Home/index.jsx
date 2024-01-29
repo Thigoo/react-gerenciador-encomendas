@@ -6,6 +6,7 @@ import ResponsiveTable from '../../components/ResponsiveTable'
 import Title from '../../components/Title'
 
 function Home() {
+  
   return (
     <div className='home-container'>
       <SideBar />
