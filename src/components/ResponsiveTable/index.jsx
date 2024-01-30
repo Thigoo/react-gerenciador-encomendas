@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ResponsiveCard } from '../ResponsiveCard';
+import { collection, onSnapshot, query } from 'firebase/firestore';
+import { db } from '../../services/firebase';
 
 const Container = styled.div`
   display: flex;
@@ -41,11 +43,11 @@ const ResponsiveTable = ({ data }) => (
     <tbody>
       {data.map((item, index) => (
         <tr key={index}>
-          <Td>{item.cliente}</Td>
-          <Td>{item.data}</Td>
-          <Td>{item.produto}</Td>
-          <Td>{item.valor}</Td>
-          <Td>{item.pago ? 'Sim' : 'Não'}</Td>
+          <Td>{item.encomenda.cliente}</Td>
+          <Td>{item.encomenda.data.toDate().toLocaleString()}</Td>
+          <Td>{item.encomenda.produto}</Td>
+          <Td>{item.encomenda.valor}</Td>
+          <Td>{item.encomenda.pago ? 'Sim' : 'Não'}</Td>
         </tr>
       ))}
     </tbody>
@@ -54,6 +56,8 @@ const ResponsiveTable = ({ data }) => (
 
 const ResponsiveComponent = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  const [encomendas, setEncomendas] = useState([]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -67,61 +71,24 @@ const ResponsiveComponent = () => {
     };
   }, []);
 
-  // Dados para exibir
-  const data = [
-    
-      {
-        "cliente": "Kathy Wyman MD",
-        "data": "2023-02-01T02:21:18.929Z",
-        "produto": "Modern Frozen Chips",
-        "valor": "81.00",
-        "pago": false,
-        "id": "1"
-      },
-      {
-        "cliente": "Dr. Ora Hilll",
-        "data": "2021-04-19T22:35:58.510Z",
-        "produto": "Refined Granite Table",
-        "valor": "462.00",
-        "pago": true,
-        "id": "2"
-      },
-      {
-        "cliente": "Victor Kuhic",
-        "data": "2041-12-05T02:50:55.608Z",
-        "produto": "Gorgeous Metal Shirt",
-        "valor": "301.00",
-        "pago": false,
-        "id": "3"
-      },
-      {
-        "cliente": "Rodolfo Pouros",
-        "data": "2047-09-26T06:20:36.256Z",
-        "produto": "Handmade Metal Keyboard",
-        "valor": "369.00",
-        "pago": true,
-        "id": "4"
-      },
-      {
-        "cliente": "Josefina Braun",
-        "data": "2083-06-29T22:40:25.182Z",
-        "produto": "Small Bronze Tuna",
-        "valor": "147.00",
-        "pago": true,
-        "id": "5"
-      }
-    ]
-    // Adicione mais objetos conforme necessário
-  ;
+  useEffect(() => {
+    const q = query(collection(db, 'encomendas'));
+    onSnapshot(q, (QuerySnapshot) => {
+      setEncomendas(QuerySnapshot.docs.map(doc => ({
+        id: doc.id,
+        encomenda: doc.data()
+      })))
+    })
+  }, []);
 
   return (
     <Container>
       {isMobile ? (
-        data.map((item, index) => (
+        encomendas.map((item, index) => (
           <ResponsiveCard key={index} item={item} />
         ))
       ) : (
-        <ResponsiveTable data={data} />
+        <ResponsiveTable data={encomendas} />
       )}
     </Container>
   );

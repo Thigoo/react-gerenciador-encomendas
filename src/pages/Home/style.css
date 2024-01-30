@@ -1,6 +1,7 @@
 .home-container {
     display: flex;
     height: 100%;
+    position: relative;
 }
 
 .home-main {
@@ -14,6 +15,7 @@
 
 .home-content {
     width: 90%;
+    margin-top: 1rem;
 }
 
 .home-button-add {

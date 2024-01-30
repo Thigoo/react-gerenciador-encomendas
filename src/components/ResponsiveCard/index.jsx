@@ -10,6 +10,7 @@ const Card = styled.div`
   overflow: hidden;
   margin: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
 `;
 
 const CardTitle = styled.div`
@@ -29,22 +30,28 @@ const CardContent = styled.div`
   }
 `;
 
-export const ResponsiveCard = ({ item }) => (
+export const ResponsiveCard = ({ item }) => { 
+  
+  const {cliente, data, produto, valor, pago} = item.encomenda;
+  
+  const dataFormatada = data.toDate().toLocaleString();
+
+  return (
     <Card>
-      <CardTitle>{item.cliente}</CardTitle>
+      <CardTitle>{cliente}</CardTitle>
       <CardContent>
         <div>
-          <strong>Data:</strong> {item.data}
+          <strong>Data:</strong> {dataFormatada}
         </div>
         <div>
-          <strong>Produto:</strong> {item.produto}
+          <strong>Produto:</strong> {produto}
         </div>
         <div>
-          <strong>Valor:</strong> {item.valor}
+          <strong>Valor:</strong> {valor}
         </div>
         <div>
-          <strong>Pago:</strong> {item.pago ? 'Sim' : 'Não'}
+          <strong>Pago:</strong> {pago ? 'Sim' : 'Não'}
         </div>
       </CardContent>
     </Card>
-  );
+  )};

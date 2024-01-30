@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import { db } from '../../services/firebase'
+import { addDoc, collection } from 'firebase/firestore';
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -29,50 +32,36 @@ const Button = styled.button`
   margin-top: 1rem;
 `;
 
-const FormAdd = ({ onInsert }) => {
+const FormAdd = () => {
   const [cliente, setCliente] = useState('');
   const [data, setData] = useState('');
   const [produto, setProduto] = useState('');
   const [valor, setValor] = useState('');
   const [pago, setPago] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validar e processar os dados
-    const newData = {
-      cliente,
-      data,
-      produto,
-      valor: parseFloat(valor), // Converte para número
-      pago: pago === 'true', // Converte para booleano
-    };
+    try {
+      await addDoc(collection(db, 'encomendas'), {
+        cliente: cliente,
+        data: new Date(),
+        produto: produto,
+        valor: valor,
+        pago: pago
 
-    // Adiciona os novos dados ao estado local
-    setData((prevData) => [...prevData, newData]);
-
-    // Chama a função de inserção com os novos dados (se fornecida)
-    if (onInsert) {
-      onInsert(newData);
+      });
+    } catch (error) {
+      alert(error);
     }
 
-    // Limpa os campos do formulário
     setCliente('');
     setData('');
     setProduto('');
     setValor('');
     setPago('');
 
-    saveLocalStorage(newData);
   };
-
-  const saveLocalStorage = (newData) => {
-    const existingData = JSON.parse(localStorage.getItem('data')) || [];
-    const updateData = [...existingData, newData];
-    console.log(updateData);
-
-    localStorage.setItem('data', JSON.stringify(updateData));
-  }
 
   return (
     <Form onSubmit={handleSubmit}>
