@@ -2,8 +2,8 @@ import React from 'react'
 import '../Home/style.css'
 import SideBar from '../../components/SideBar'
 import Button from '../../components/Button'
-import ResponsiveTable from '../../components/ResponsiveTable'
 import Title from '../../components/Title'
+import ResponsiveComponent from '../../components/ResponsiveComponent'
 
 function Home() {
   
@@ -16,7 +16,7 @@ function Home() {
           <Button title={'Adicionar'}/>
         </div>
         <div className="home-content">
-          <ResponsiveTable />
+          <ResponsiveComponent />
         </div>
       </div>
     </div>

@@ -1,0 +1,12 @@
+.btn-edit, .btn-delete {
+    border: none;
+    background: #F4CE14;
+    border-radius: 7px;
+    padding: 7px;
+    cursor: pointer;
+}
+
+.btn-delete {
+    background: gray;
+    color: red;
+}

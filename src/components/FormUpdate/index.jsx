@@ -1,7 +1,8 @@
 import { doc, updateDoc } from 'firebase/firestore';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { db } from '../../services/firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Form = styled.form`
   display: flex;
