@@ -6,13 +6,13 @@ function Button({ title }) {
 
     const navigate = useNavigate();
 
-    const handleClick = () => {
+    const irParaAdd = () => {
         navigate('/create');
     }
 
     return (
         <div>
-            <button className='button' onClick={handleClick}>{title}</button>
+            <button className='button' onClick={irParaAdd}>{title}</button>
         </div>
     )
 }

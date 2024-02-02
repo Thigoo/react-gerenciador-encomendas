@@ -39,7 +39,7 @@ const FormAdd = () => {
   const [valor, setValor] = useState('');
   const [pago, setPago] = useState('');
 
-  const handleSubmit = async (e) => {
+  const adicionar = async (e) => {
     e.preventDefault();
 
     try {
@@ -64,7 +64,7 @@ const FormAdd = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={adicionar}>
       <Label>Cliente:</Label>
       <Input
         type="text"
@@ -75,7 +75,7 @@ const FormAdd = () => {
 
       <Label>Data:</Label>
       <Input
-        type="text"
+        type="date"
         value={data}
         onChange={(e) => setData(e.target.value)}
         required

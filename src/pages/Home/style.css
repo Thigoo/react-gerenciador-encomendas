@@ -24,11 +24,20 @@
     width: 85%;
 }
 
+@media screen and (max-width: 768px) {
+    .home-main {
+        width: calc(100% - 230px);
+    }
+
+}
+
 @media (max-width: 480px) {
     .home-container {
         display: block;
     }
+
     .home-main {
         margin-left: 0;
+        width: 100%;
     }
 }

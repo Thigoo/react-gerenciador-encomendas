@@ -1,10 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-
-
 const Card = styled.div`
-  width: 300px;
+  width: 90%;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
@@ -33,8 +32,14 @@ const CardContent = styled.div`
 export const ResponsiveCard = ({ item }) => { 
   
   const {cliente, data, produto, valor, pago} = item.encomenda;
+
+  const navigate = useNavigate();
   
   const dataFormatada = data.toLocaleString();
+
+  const irParaUpdate = () => {
+    navigate('/update');
+  }
 
   return (
     <Card>
@@ -51,6 +56,9 @@ export const ResponsiveCard = ({ item }) => {
         </div>
         <div>
           <strong>Pago:</strong> {pago ? 'Sim' : 'Não'}
+        </div>
+        <div>
+          <button onClick={irParaUpdate}>Atualizar</button>
         </div>
       </CardContent>
     </Card>

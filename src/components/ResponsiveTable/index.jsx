@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import '../ResponsiveTable/style.css'
 import { MdOutlineEditCalendar } from 'react-icons/md'
 import { BsFillTrash3Fill } from "react-icons/bs";
+import { useNavigate } from 'react-router-dom';
 
 const Table = styled.table`
-  width: 100%;
+  width: 90%;
   border-collapse: collapse;
   margin-top: 16px;
 `;
@@ -23,7 +24,20 @@ const Td = styled.td`
   padding: 8px;
 `;
 
-const ResponsiveTable = ({ data, formatarData, handleClick }) => {
+const ResponsiveTable = ({ data }) => {
+
+  const navigate = useNavigate();
+
+  const irParaUpdate = () => {
+    navigate('/update');
+
+  }
+
+  const formatarData = (date) => {
+    const opcoes = { ano: 'numeric', mes: '2-digit', dia: '2-digit' };
+    return date.toLocaleString('pt-BR', opcoes);
+  }
+  
   return (
     <Table>
       <thead>
@@ -47,14 +61,14 @@ const ResponsiveTable = ({ data, formatarData, handleClick }) => {
             <Td>{item.encomenda.pago ? 'Sim' : 'Não'}</Td>
             <Td>
               <button
-                className='btn-edit'>
+                className='btn-edit'                
+                onClick={irParaUpdate}>
                 <MdOutlineEditCalendar />
               </button>
             </Td>
             <Td>
               <button
-                className='btn-delete'
-                handleClick={handleClick}>
+                className='btn-delete'>
                 <BsFillTrash3Fill />
               </button>
             </Td>
