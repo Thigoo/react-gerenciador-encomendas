@@ -4,9 +4,11 @@ import '../ResponsiveTable/style.css'
 import { MdOutlineEditCalendar } from 'react-icons/md'
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
+// import { deleteDoc, doc } from 'firebase/firestore';
+// import { db } from '../../services/firebase';
 
 const Table = styled.table`
-  width: 90%;
+  width: 100%;
   border-collapse: collapse;
   margin-top: 16px;
 `;
@@ -30,20 +32,28 @@ const ResponsiveTable = ({ data }) => {
 
   const irParaUpdate = () => {
     navigate('/update');
-
   }
 
-  const formatarData = (date) => {
-    const opcoes = { ano: 'numeric', mes: '2-digit', dia: '2-digit' };
-    return date.toLocaleString('pt-BR', opcoes);
-  }
+  const deletar = async () => {
+    console.log("Aqui deleta");
+    // const encDocRef = doc(db, 'encomendas', id);
+    // try {
+    //   await deleteDoc(encDocRef);
+    // } catch (error) {
+    //   alert(error)
+    }
+  
+
+  // const formatarData = (date) => {
+  //   const opcoes = { ano: 'numeric', mes: '2-digit', dia: '2-digit' };
+  //   return date.toLocaleString('pt-BR', opcoes);
+  // }
   
   return (
     <Table>
       <thead>
         <tr>
           <Th>Cliente</Th>
-          <Th>Data</Th>
           <Th>Produto</Th>
           <Th>Valor</Th>
           <Th>Pago</Th>
@@ -55,7 +65,7 @@ const ResponsiveTable = ({ data }) => {
         {data.map((item, index) => (
           <tr key={index}>
             <Td>{item.encomenda.cliente}</Td>
-            <Td>{formatarData(item.encomenda.data)}</Td>
+            {/* <Td>{formatarData(item.encomenda.data)}</Td> */}
             <Td>{item.encomenda.produto}</Td>
             <Td>{item.encomenda.valor}</Td>
             <Td>{item.encomenda.pago ? 'Sim' : 'Não'}</Td>
@@ -68,7 +78,8 @@ const ResponsiveTable = ({ data }) => {
             </Td>
             <Td>
               <button
-                className='btn-delete'>
+                className='btn-delete'
+                onClick={deletar}>
                 <BsFillTrash3Fill />
               </button>
             </Td>

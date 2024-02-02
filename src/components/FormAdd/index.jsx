@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { db } from '../../services/firebase'
 import { Timestamp, addDoc, collection } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 const Form = styled.form`
   display: flex;
@@ -34,10 +35,11 @@ const Button = styled.button`
 
 const FormAdd = () => {
   const [cliente, setCliente] = useState('');
-  const [data, setData] = useState('');
   const [produto, setProduto] = useState('');
   const [valor, setValor] = useState('');
   const [pago, setPago] = useState('');
+
+  const navigate = useNavigate();
 
   const adicionar = async (e) => {
     e.preventDefault();
@@ -49,18 +51,17 @@ const FormAdd = () => {
         produto: produto,
         valor: valor,
         pago: false
-
       });
+
+      navigate('/');
     } catch (error) {
       alert(error);
     }
 
     setCliente('');
-    setData('');
     setProduto('');
     setValor('');
     setPago('');
-
   };
 
   return (
@@ -73,13 +74,13 @@ const FormAdd = () => {
         required
       />
 
-      <Label>Data:</Label>
+      {/* <Label>Data:</Label>
       <Input
         type="date"
         value={data}
         onChange={(e) => setData(e.target.value)}
         required
-      />
+      /> */}
 
       <Label>Produto:</Label>
       <Input

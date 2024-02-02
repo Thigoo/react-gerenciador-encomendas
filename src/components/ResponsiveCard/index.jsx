@@ -31,11 +31,11 @@ const CardContent = styled.div`
 
 export const ResponsiveCard = ({ item }) => { 
   
-  const {cliente, data, produto, valor, pago} = item.encomenda;
+  const {cliente, produto, valor, pago} = item.encomenda;
 
   const navigate = useNavigate();
   
-  const dataFormatada = data.toLocaleString();
+  // const dataFormatada = data.toLocaleString();
 
   const irParaUpdate = () => {
     navigate('/update');
@@ -45,9 +45,9 @@ export const ResponsiveCard = ({ item }) => {
     <Card>
       <CardTitle>{cliente}</CardTitle>
       <CardContent>
-        <div>
+        {/* <div>
           <strong>Data:</strong> {dataFormatada}
-        </div>
+        </div> */}
         <div>
           <strong>Produto:</strong> {produto}
         </div>
