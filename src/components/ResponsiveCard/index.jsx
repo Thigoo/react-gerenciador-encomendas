@@ -34,7 +34,7 @@ export const ResponsiveCard = ({ item }) => {
   
   const {cliente, data, produto, valor, pago} = item.encomenda;
   
-  const dataFormatada = data.toDate().toLocaleString();
+  const dataFormatada = data.toLocaleString();
 
   return (
     <Card>

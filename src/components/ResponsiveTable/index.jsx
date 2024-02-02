@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ResponsiveCard } from '../ResponsiveCard';
-import { collection, onSnapshot, query } from 'firebase/firestore';
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { db } from '../../services/firebase';
 
 const Container = styled.div`
@@ -29,7 +29,7 @@ const Td = styled.td`
   padding: 8px;
 `;
 
-const ResponsiveTable = ({ data }) => (
+const ResponsiveTable = ({ data, formatarData }) => (
   <Table>
     <thead>
       <tr>
@@ -44,7 +44,7 @@ const ResponsiveTable = ({ data }) => (
       {data.map((item, index) => (
         <tr key={index}>
           <Td>{item.encomenda.cliente}</Td>
-          <Td>{item.encomenda.data.toDate().toLocaleString()}</Td>
+          <Td>{formatarData(item.encomenda.data)}</Td>
           <Td>{item.encomenda.produto}</Td>
           <Td>{item.encomenda.valor}</Td>
           <Td>{item.encomenda.pago ? 'Sim' : 'Não'}</Td>
@@ -59,6 +59,11 @@ const ResponsiveComponent = () => {
 
   const [encomendas, setEncomendas] = useState([]);
 
+  const formatarData = (date) => {
+    const opcoes = {year: 'numeric', month: '2-digit', day: '2-digit'};
+    return date.toLocaleString('pt-BR', opcoes);
+  }
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -72,11 +77,14 @@ const ResponsiveComponent = () => {
   }, []);
 
   useEffect(() => {
-    const q = query(collection(db, 'encomendas'));
-    onSnapshot(q, (QuerySnapshot) => {
-      setEncomendas(QuerySnapshot.docs.map(doc => ({
+    const q = query(collection(db, 'encomendas'), orderBy('data', 'desc'));
+    onSnapshot(q, (querySnapshot) => {
+      setEncomendas(querySnapshot.docs.map(doc => ({
         id: doc.id,
-        encomenda: doc.data()
+        encomenda: {
+          ...doc.data(),
+          data: doc.data().data.toDate()
+        }
       })))
     })
   }, []);
@@ -88,7 +96,7 @@ const ResponsiveComponent = () => {
           <ResponsiveCard key={index} item={item} />
         ))
       ) : (
-        <ResponsiveTable data={encomendas} />
+        <ResponsiveTable data={encomendas} formatarData={formatarData} />
       )}
     </Container>
   );

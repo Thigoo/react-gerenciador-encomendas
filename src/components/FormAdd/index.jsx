@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { db } from '../../services/firebase'
-import { addDoc, collection } from 'firebase/firestore';
+import { Timestamp, addDoc, collection } from 'firebase/firestore';
 
 const Form = styled.form`
   display: flex;
@@ -45,10 +45,10 @@ const FormAdd = () => {
     try {
       await addDoc(collection(db, 'encomendas'), {
         cliente: cliente,
-        data: new Date(),
+        data: Timestamp.now(),
         produto: produto,
         valor: valor,
-        pago: pago
+        pago: false
 
       });
     } catch (error) {
