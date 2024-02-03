@@ -2,6 +2,7 @@ import { doc, updateDoc } from 'firebase/firestore';
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import { db } from '../../services/firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Form = styled.form`
   display: flex;
@@ -31,30 +32,38 @@ const Button = styled.button`
   margin-top: 1rem;
 `;
 
-function FormUpdate({id}) {
 
-    const [cliente, setCliente] = useState('');
-    const [data, setData] = useState();
-    const [produto, setProduto] = useState('');
-    const [valor, setValor] = useState('');
-    const [pago, setPago] = useState('');
+function FormUpdate({ id, clienteAntigo, produtoAntigo, valorAntigo, pagoAntigo }) {
 
-    const atualizar = async (e) => {
-        e.preventDefault();
+  const [cliente, setCliente] = useState(clienteAntigo);
+  const [produto, setProduto] = useState(produtoAntigo);
+  const [valor, setValor] = useState(valorAntigo);
+  const [pago, setPago] = useState(pagoAntigo === 'true');
 
-        const encDocRef = doc(db, 'encomendas', id)
-        try {
-            await updateDoc(encDocRef, {
-                cliente: cliente,
-                data: data,
-                produto: produto,
-                valor: valor,
-                pago: pago
-            })
-        } catch (error) {
-            alert(error);
-        }
+  const navigate = useNavigate();
+
+  const atualizar = async (e) => {
+    e.preventDefault();
+
+    const encDocRef = doc(db, 'encomendas', id);
+    try {
+      await updateDoc(encDocRef, {
+        cliente: cliente,
+        produto: produto,
+        valor: valor,
+        pago: pago.toString()
+      })
+      alert('Produto atualizado com sucesso!')
+      navigate('/');
+    } catch (error) {
+      alert(error);
     }
+  }
+
+  const handleChangePago = (e) => {
+    setPago(e.target.value === "true");
+    console.log("Valor de pago:", e.target.value);
+  };
 
   return (
     <Form onSubmit={atualizar}>
@@ -65,13 +74,6 @@ function FormUpdate({id}) {
         onChange={(e) => setCliente(e.target.value)}
         required
       />
-      <Input
-        type="text"
-        value={data}
-        onChange={(e) => setData(e.target.value)}
-        required
-      />
-
       <Label>Produto:</Label>
       <Input
         type="text"
@@ -90,8 +92,9 @@ function FormUpdate({id}) {
 
       <Label>Pago:</Label>
       <select
-        value={pago}
-        onChange={(e) => setPago(e.target.value)}
+        value={pago.toString()}
+        // onChange={(e) => setPago(e.target.value)}
+        onChange={handleChangePago}
         required
       >
         <option value="">Selecione</option>
@@ -102,7 +105,7 @@ function FormUpdate({id}) {
       <Button type="submit">Atualizar</Button>
     </Form>
   );
-  
+
 }
 
 export default FormUpdate

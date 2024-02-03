@@ -4,8 +4,8 @@ import '../ResponsiveTable/style.css'
 import { MdOutlineEditCalendar } from 'react-icons/md'
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
-// import { deleteDoc, doc } from 'firebase/firestore';
-// import { db } from '../../services/firebase';
+import { deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../../services/firebase';
 
 const Table = styled.table`
   width: 100%;
@@ -30,25 +30,29 @@ const ResponsiveTable = ({ data }) => {
 
   const navigate = useNavigate();
 
-  const irParaUpdate = () => {
-    navigate('/update');
+  const irParaUpdate = (id) => {
+    navigate(`/update/${id}`);
   }
 
-  const deletar = async () => {
-    console.log("Aqui deleta");
-    // const encDocRef = doc(db, 'encomendas', id);
-    // try {
-    //   await deleteDoc(encDocRef);
-    // } catch (error) {
-    //   alert(error)
+  const deletar = async (id) => {
+    const confirmacao = confirm(`Você tem certeza?`);
+
+    if (confirmacao) {
+      const encDocRef = doc(db, 'encomendas', id);
+      try {
+        await deleteDoc(encDocRef);
+      } catch (error) {
+        alert(error)
+      }
     }
-  
+  }
+
 
   // const formatarData = (date) => {
   //   const opcoes = { ano: 'numeric', mes: '2-digit', dia: '2-digit' };
   //   return date.toLocaleString('pt-BR', opcoes);
   // }
-  
+
   return (
     <Table>
       <thead>
@@ -71,15 +75,15 @@ const ResponsiveTable = ({ data }) => {
             <Td>{item.encomenda.pago ? 'Sim' : 'Não'}</Td>
             <Td>
               <button
-                className='btn-edit'                
-                onClick={irParaUpdate}>
+                className='btn-edit'
+                onClick={() => irParaUpdate(item.id)}>
                 <MdOutlineEditCalendar />
               </button>
             </Td>
             <Td>
               <button
                 className='btn-delete'
-                onClick={deletar}>
+                onClick={() => deletar(item.id)}>
                 <BsFillTrash3Fill />
               </button>
             </Td>

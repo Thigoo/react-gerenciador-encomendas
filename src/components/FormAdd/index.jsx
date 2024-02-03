@@ -37,7 +37,7 @@ const FormAdd = () => {
   const [cliente, setCliente] = useState('');
   const [produto, setProduto] = useState('');
   const [valor, setValor] = useState('');
-  const [pago, setPago] = useState('');
+  const [pago, setPago] = useState(false);
 
   const navigate = useNavigate();
 
@@ -50,7 +50,7 @@ const FormAdd = () => {
         data: Timestamp.now(),
         produto: produto,
         valor: valor,
-        pago: false
+        pago: pago
       });
 
       navigate('/');
@@ -61,7 +61,7 @@ const FormAdd = () => {
     setCliente('');
     setProduto('');
     setValor('');
-    setPago('');
+    setPago(false);
   };
 
   return (
@@ -100,8 +100,8 @@ const FormAdd = () => {
 
       <Label>Pago:</Label>
       <select
-        value={pago}
-        onChange={(e) => setPago(e.target.value)}
+        value={pago.toString()}
+        onChange={(e) => setPago(e.target.value === "true")}
         required
       >
         <option value="">Selecione</option>
