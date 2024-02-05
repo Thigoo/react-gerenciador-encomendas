@@ -4,6 +4,7 @@ import { db } from "../../services/firebase";
 import styled from "styled-components";
 import { ResponsiveCard } from "../ResponsiveCard";
 import ResponsiveTable from "../ResponsiveTable";
+import NoOrders from "../NoOrders";
 
 const Container = styled.div`
   display: flex;
@@ -41,6 +42,10 @@ const ResponsiveComponent = () => {
       })))
     })
   }, []);
+
+  if(encomendas.length === 0) {
+    return <NoOrders />
+  }
 
   return (
     <Container>

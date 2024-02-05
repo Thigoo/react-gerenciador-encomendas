@@ -47,7 +47,6 @@ const ResponsiveTable = ({ data }) => {
     }
   }
 
-
   // const formatarData = (date) => {
   //   const opcoes = { ano: 'numeric', mes: '2-digit', dia: '2-digit' };
   //   return date.toLocaleString('pt-BR', opcoes);

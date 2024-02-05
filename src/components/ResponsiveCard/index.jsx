@@ -1,6 +1,11 @@
+import { deleteDoc, doc } from "firebase/firestore";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { db } from "../../services/firebase";
+import { MdOutlineEditCalendar } from 'react-icons/md'
+import { BsFillTrash3Fill } from "react-icons/bs";
+import '../ResponsiveCard/style.css'
 
 const Card = styled.div`
   width: 90%;
@@ -29,16 +34,29 @@ const CardContent = styled.div`
   }
 `;
 
-export const ResponsiveCard = ({ item }) => { 
-  
-  const {cliente, produto, tema,  valor, pago} = item.encomenda;
+export const ResponsiveCard = ({ item }) => {
+
+  const { cliente, produto, tema, valor, pago } = item.encomenda;
 
   const navigate = useNavigate();
-  
+
   // const dataFormatada = data.toLocaleString();
 
-  const irParaUpdate = () => {
-    navigate('/update');
+  const irParaUpdate = (id) => {
+    navigate(`/update/${id}`);
+  }
+
+  const deletar = async (id) => {
+    const confirmacao = confirm(`Você tem certeza?`);
+
+    if (confirmacao) {
+      const encDocRef = doc(db, 'encomendas', id);
+      try {
+        await deleteDoc(encDocRef);
+      } catch (error) {
+        alert(error)
+      }
+    }
   }
 
   return (
@@ -60,9 +78,19 @@ export const ResponsiveCard = ({ item }) => {
         <div>
           <strong>Pago:</strong> {pago ? 'Sim' : 'Não'}
         </div>
-        <div>
-          <button onClick={irParaUpdate}>Atualizar</button>
+        <div className="card-btn">
+          <button
+            className="card-btn-edit"
+            onClick={() => irParaUpdate(item.id)}>
+            <MdOutlineEditCalendar />
+          </button>
+          <button
+            className="card-btn-delete"
+            onClick={() => deletar(item.id)}>
+            <BsFillTrash3Fill />
+          </button>
         </div>
       </CardContent>
     </Card>
-  )};
+  )
+};
