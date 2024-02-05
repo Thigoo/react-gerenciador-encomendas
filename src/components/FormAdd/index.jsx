@@ -111,7 +111,7 @@ const FormAdd = () => {
         <option value="false">Não</option>
       </select>
 
-      <Button type="submit">Inserir</Button>
+      <Button type="submit">Adicionar Encomenda</Button>
     </Form>
   );
 };

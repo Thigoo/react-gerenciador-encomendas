@@ -27,7 +27,7 @@ function SideBar() {
         <img src="#" alt="Logo" />
       </div>
       <div className='links'>
-      <Link to={'/'} className='link'>Home</Link>
+      <Link to={'/'} className='link'>Encomendas</Link>
       </div>
     </SidebarWrapper>
   )
