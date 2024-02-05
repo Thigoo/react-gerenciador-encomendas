@@ -36,6 +36,7 @@ const Button = styled.button`
 const FormAdd = () => {
   const [cliente, setCliente] = useState('');
   const [produto, setProduto] = useState('');
+  const [tema, setTema] = useState('');
   const [valor, setValor] = useState('');
   const [pago, setPago] = useState(false);
 
@@ -49,6 +50,7 @@ const FormAdd = () => {
         cliente: cliente,
         data: Timestamp.now(),
         produto: produto,
+        tema: tema,
         valor: valor,
         pago: pago
       });
@@ -74,13 +76,13 @@ const FormAdd = () => {
         required
       />
 
-      {/* <Label>Data:</Label>
+      <Label>Tema:</Label>
       <Input
-        type="date"
-        value={data}
-        onChange={(e) => setData(e.target.value)}
+        type="text"
+        value={tema}
+        onChange={(e) => setTema(e.target.value)}
         required
-      /> */}
+      />
 
       <Label>Produto:</Label>
       <Input

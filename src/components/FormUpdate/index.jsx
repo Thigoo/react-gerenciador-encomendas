@@ -33,10 +33,11 @@ const Button = styled.button`
 `;
 
 
-function FormUpdate({ id, clienteAntigo, produtoAntigo, valorAntigo, pagoAntigo }) {
+function FormUpdate({ id, clienteAntigo, produtoAntigo, temaAntigo, valorAntigo, pagoAntigo }) {
 
   const [cliente, setCliente] = useState(clienteAntigo);
   const [produto, setProduto] = useState(produtoAntigo);
+  const [tema, setTema] = useState(temaAntigo);
   const [valor, setValor] = useState(valorAntigo);
   const [pago, setPago] = useState(pagoAntigo === 'true');
 
@@ -50,8 +51,9 @@ function FormUpdate({ id, clienteAntigo, produtoAntigo, valorAntigo, pagoAntigo 
       await updateDoc(encDocRef, {
         cliente: cliente,
         produto: produto,
+        tema: tema,
         valor: valor,
-        pago: pago.toString()
+        pago: pago
       })
       alert('Produto atualizado com sucesso!')
       navigate('/');
@@ -79,6 +81,13 @@ function FormUpdate({ id, clienteAntigo, produtoAntigo, valorAntigo, pagoAntigo 
         type="text"
         value={produto}
         onChange={(e) => setProduto(e.target.value)}
+        required
+      />
+      <Label>Tema:</Label>
+      <Input
+        type="text"
+        value={tema}
+        onChange={(e) => setTema(e.target.value)}
         required
       />
 

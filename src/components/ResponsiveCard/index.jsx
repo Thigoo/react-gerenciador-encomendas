@@ -31,7 +31,7 @@ const CardContent = styled.div`
 
 export const ResponsiveCard = ({ item }) => { 
   
-  const {cliente, produto, valor, pago} = item.encomenda;
+  const {cliente, produto, tema,  valor, pago} = item.encomenda;
 
   const navigate = useNavigate();
   
@@ -50,6 +50,9 @@ export const ResponsiveCard = ({ item }) => {
         </div> */}
         <div>
           <strong>Produto:</strong> {produto}
+        </div>
+        <div>
+          <strong>Tema:</strong> {tema}
         </div>
         <div>
           <strong>Valor:</strong> {valor}

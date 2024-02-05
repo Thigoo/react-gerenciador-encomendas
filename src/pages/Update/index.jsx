@@ -43,6 +43,7 @@ function Update() {
             id={id}
             clienteAntigo={encomenda.cliente}
             produtoAntigo={encomenda.produto}
+            temaAntigo={encomenda.tema}
             valorAntigo={encomenda.valor}
             pagoAntigo={encomenda.pago} />
           )}

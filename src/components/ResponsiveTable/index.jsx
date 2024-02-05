@@ -59,6 +59,7 @@ const ResponsiveTable = ({ data }) => {
         <tr>
           <Th>Cliente</Th>
           <Th>Produto</Th>
+          <Th>Tema</Th>
           <Th>Valor</Th>
           <Th>Pago</Th>
           <Th>Editar</Th>
@@ -71,6 +72,7 @@ const ResponsiveTable = ({ data }) => {
             <Td>{item.encomenda.cliente}</Td>
             {/* <Td>{formatarData(item.encomenda.data)}</Td> */}
             <Td>{item.encomenda.produto}</Td>
+            <Td>{item.encomenda.tema}</Td>
             <Td>{item.encomenda.valor}</Td>
             <Td>{item.encomenda.pago ? 'Sim' : 'Não'}</Td>
             <Td>
