@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { db } from '../../services/firebase'
-import { Timestamp, addDoc, collection } from 'firebase/firestore';
+// import { db } from '../../services/firebase'
+// import { Timestamp, addDoc, collection } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import { Timestamp, addDoc, collection } from 'firebase/firestore';
+import { db } from '../../services/firebase';
 
 const Form = styled.form`
   display: flex;
@@ -44,6 +46,21 @@ const FormAdd = () => {
 
   const adicionar = async (e) => {
     e.preventDefault();
+
+    // let encomendas = JSON.parse(localStorage.getItem('encomendas')) || [];
+
+    // encomendas.push({
+    //   id: new Date().getTime().toString(),
+    //   cliente: cliente,
+    //   tema: tema,
+    //   produto: produto,
+    //   valor: valor,
+    //   pago: pago
+    // })
+
+    // localStorage.setItem("encomendas", JSON.stringify(encomendas));
+
+    navigate('/');
 
     try {
       await addDoc(collection(db, 'encomendas'), {

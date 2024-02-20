@@ -1,10 +1,10 @@
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { db } from "../../services/firebase";
 import styled from "styled-components";
 import { ResponsiveCard } from "../ResponsiveCard";
 import ResponsiveTable from "../ResponsiveTable";
 import NoOrders from "../NoOrders";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { db } from "../../services/firebase";
 
 const Container = styled.div`
   display: flex;
@@ -17,6 +17,8 @@ const ResponsiveComponent = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const [encomendas, setEncomendas] = useState([]);
+
+  // const [gatilho, setGatilho] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -41,7 +43,14 @@ const ResponsiveComponent = () => {
         }
       })))
     })
+
+    // const encomendasLocal = JSON.parse(localStorage.getItem('encomendas'));
+    // setEncomendas(encomendasLocal);
   }, []);
+
+  // const dispararGatilho = () => {
+  //   setGatilho((estadoAntigo) => !estadoAntigo);
+  // }
 
   if(encomendas.length === 0) {
     return <NoOrders />
@@ -54,7 +63,7 @@ const ResponsiveComponent = () => {
           <ResponsiveCard key={index} item={item} />
         ))
       ) : (
-        <ResponsiveTable data={encomendas} />
+        <ResponsiveTable data={encomendas}/>
       )}
     </Container>
   );

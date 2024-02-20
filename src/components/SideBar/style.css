@@ -9,6 +9,7 @@
 
 .links {
     display: flex;
+    flex-direction: column;
 }
 
 .link {
@@ -17,4 +18,5 @@
     background: gray;
     color: #fafafa;
     text-decoration: none;
+    margin-top: .7rem;
 }

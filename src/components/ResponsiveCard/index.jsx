@@ -36,7 +36,7 @@ const CardContent = styled.div`
 
 export const ResponsiveCard = ({ item }) => {
 
-  const { cliente, produto, tema, valor, pago } = item.encomenda;
+  // const { cliente, produto, tema, valor, pago } = item;
 
   const navigate = useNavigate();
 
@@ -61,22 +61,22 @@ export const ResponsiveCard = ({ item }) => {
 
   return (
     <Card>
-      <CardTitle>{cliente}</CardTitle>
+      <CardTitle>{item.encomenda.cliente}</CardTitle>
       <CardContent>
         {/* <div>
           <strong>Data:</strong> {dataFormatada}
         </div> */}
         <div>
-          <strong>Produto:</strong> {produto}
+          <strong>Produto:</strong> {item.encomenda.produto}
         </div>
         <div>
-          <strong>Tema:</strong> {tema}
+          <strong>Tema:</strong> {item.encomenda.tema}
         </div>
         <div>
-          <strong>Valor:</strong> {valor}
+          <strong>Valor:</strong> {item.encomenda.valor}
         </div>
         <div>
-          <strong>Pago:</strong> {pago ? 'Sim' : 'Não'}
+          <strong>Pago:</strong> {item.encomenda.pago ? 'Sim' : 'Não'}
         </div>
         <div className="card-btn">
           <button

@@ -44,9 +44,12 @@ const ResponsiveTable = ({ data }) => {
       } catch (error) {
         alert(error)
       }
+      // const encomendasAtualizadas = data.filter((encomenda) => encomenda.id === id);
+      // localStorage.setItem('encomendas', JSON.stringify(encomendasAtualizadas));
+      // dispararGatilho();
+      }
     }
-  }
-
+  
   // const formatarData = (date) => {
   //   const opcoes = { ano: 'numeric', mes: '2-digit', dia: '2-digit' };
   //   return date.toLocaleString('pt-BR', opcoes);
