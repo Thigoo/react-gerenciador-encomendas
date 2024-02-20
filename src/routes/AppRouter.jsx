@@ -4,6 +4,7 @@ import Home from '../pages/Home'
 import Update from '../pages/Update'
 import Create from '../pages/Create'
 import Produtos from '../pages/Products'
+import AddProducts from '../pages/AddProducts'
 
 
 
@@ -14,6 +15,7 @@ function AppRouter() {
         <Route path='/update/:id' element={<Update />}></Route>
         <Route path='/create' element={<Create />}></Route>
         <Route path='/produtos' element={<Produtos />}></Route>
+        <Route path='/adicionarProdutos' element={<AddProducts />}></Route>
     </Routes>
   )
 }

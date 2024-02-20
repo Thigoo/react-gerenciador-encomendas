@@ -13,7 +13,7 @@ function Home() {
       <div className='home-main'>
         <Title title={'Minhas encomendas'}/>
         <div className="home-button-add">
-          <Button title={'Adicionar'}/>
+          <Button title={'Adicionar'} rota={'/create'}/>
         </div>
         <div className="home-content">
           <ResponsiveComponent />

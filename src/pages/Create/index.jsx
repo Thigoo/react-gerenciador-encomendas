@@ -9,13 +9,13 @@ function Create() {
     <div className="create-container">
       <SideBar />
       <div className="create-main">
-        <Title title={'Adicionar encomenda'}/>
-      <div className="create-content">
-        <FormAdd />
-      </div>
+        <Title title={'Adicionar encomenda'} />
+        <div className="create-content">
+          <FormAdd />
+        </div>
       </div>
     </div>
-    )
+  )
 }
 
 export default Create

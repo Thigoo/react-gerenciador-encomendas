@@ -1,0 +1,12 @@
+.add-products-container {
+    display: flex;
+}
+
+.add-products-main {
+    margin-left: 230px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+

@@ -11,10 +11,10 @@ function Produtos() {
         <div className="produtos-main">
             <Title  title={"Meus Produtos"}/>
             <div className="produtos-btn-add">
-                <Button title={"Adicionar"}/>
+                <Button title={"Adicionar"} rota={"/adicionarProdutos"}/>
             </div>
             <div className="produtos-content">
-                
+                Produtos
             </div>
         </div>
     </div>

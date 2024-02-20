@@ -53,7 +53,7 @@ const ResponsiveComponent = () => {
   // }
 
   if(encomendas.length === 0) {
-    return <NoOrders />
+    return <NoOrders title={'Oops, nenhuma encomenda cadastrada.'} description={'Adicione uma nova encomenda'}/>
   }
 
   return (
