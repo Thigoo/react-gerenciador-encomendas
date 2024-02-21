@@ -1,9 +1,9 @@
-.create-container {
+.add-order-container {
     height: 100%;
     display: flex;
 }
 
-.create-main {
+.add-order-main {
     margin-left: 230px;
     display: flex;
     flex-direction: column;
@@ -11,15 +11,15 @@
     width: 100%;
 }
 
-.create-content {
+.add-order-content {
     width: 100%;
 }
 
 @media (max-width: 480px) {
-    .create-container {
+    .add-order-container {
         display: block;
     }
-    .create-main {
+    .add-order-main {
         margin-left: 0;
     }
 }

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import '../ResponsiveTable/style.css'
+import './style.css'
 import { MdOutlineEditCalendar } from 'react-icons/md'
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
 import { deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../../services/firebase';
+import { db } from '../../../services/firebase';
 
 const Table = styled.table`
   width: 100%;
@@ -26,12 +26,12 @@ const Td = styled.td`
   padding: 8px;
 `;
 
-const ResponsiveTable = ({ data }) => {
+const OrderTable = ({ data }) => {
 
   const navigate = useNavigate();
 
-  const irParaUpdate = (id) => {
-    navigate(`/update/${id}`);
+  const goUpdateOrder = (id) => {
+    navigate(`/updateOrder/${id}`);
   }
 
   const deletar = async (id) => {
@@ -80,7 +80,7 @@ const ResponsiveTable = ({ data }) => {
             <Td>
               <button
                 className='btn-edit'
-                onClick={() => irParaUpdate(item.id)}>
+                onClick={() => goUpdateOrder(item.id)}>
                 <MdOutlineEditCalendar />
               </button>
             </Td>
@@ -97,7 +97,7 @@ const ResponsiveTable = ({ data }) => {
     </Table>
   );
 }
-export default ResponsiveTable;
+export default OrderTable;
 
 
 

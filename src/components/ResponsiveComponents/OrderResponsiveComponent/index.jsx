@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { ResponsiveCard } from "../ResponsiveCard";
-import ResponsiveTable from "../ResponsiveTable";
-import NoOrders from "../NoOrders";
+import NoOrders from "../../NoOrders";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
-import { db } from "../../services/firebase";
+import { db } from "../../../services/firebase";
+import { OrderCard } from "../../Cards/OrderCard";
+import OrderTable from "../../Tables/OrderTable";
 
 const Container = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const Container = styled.div`
   justify-content: space-evenly;
 `;
 
-const ResponsiveComponent = () => {
+const OrderResponsiveComponent = () => {
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -60,13 +60,13 @@ const ResponsiveComponent = () => {
     <Container>
       {isMobile ? (
         encomendas.map((item, index) => (
-          <ResponsiveCard key={index} item={item} />
+          <OrderCard key={index} item={item} />
         ))
       ) : (
-        <ResponsiveTable data={encomendas}/>
+        <OrderTable data={encomendas}/>
       )}
     </Container>
   );
 };
 
-export default ResponsiveComponent;
+export default OrderResponsiveComponent;

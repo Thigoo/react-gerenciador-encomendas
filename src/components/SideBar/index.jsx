@@ -28,7 +28,7 @@ function SideBar() {
       </div>
       <div className='links'>
       <Link to={'/'} className='link'>Encomendas</Link>
-      <Link to={'/produtos'} className='link'>Produtos</Link>
+      <Link to={'/products'} className='link'>Produtos</Link>
       </div>
     </SidebarWrapper>
   )

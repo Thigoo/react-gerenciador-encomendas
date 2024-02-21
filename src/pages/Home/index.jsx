@@ -3,7 +3,7 @@ import '../Home/style.css'
 import SideBar from '../../components/SideBar'
 import Button from '../../components/Button'
 import Title from '../../components/Title'
-import ResponsiveComponent from '../../components/ResponsiveComponent'
+import OrderResponsiveComponent from '../../components/ResponsiveComponents/OrderResponsiveComponent'
 
 function Home() {
   
@@ -13,10 +13,10 @@ function Home() {
       <div className='home-main'>
         <Title title={'Minhas encomendas'}/>
         <div className="home-button-add">
-          <Button title={'Adicionar'} rota={'/create'}/>
+          <Button title={'Adicionar'} rota={'/addOrder'}/>
         </div>
         <div className="home-content">
-          <ResponsiveComponent />
+          <OrderResponsiveComponent />
         </div>
       </div>
     </div>

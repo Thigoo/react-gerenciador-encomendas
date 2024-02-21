@@ -6,13 +6,13 @@ function Button({ title, rota }) {
 
     const navigate = useNavigate();
 
-    const irParaAdd = () => {
+    const goToAdd = () => {
         navigate(rota);
     }
 
     return (
         <div>
-            <button className='button' onClick={irParaAdd}>{title}</button>
+            <button className='button' onClick={goToAdd}>{title}</button>
         </div>
     )
 }

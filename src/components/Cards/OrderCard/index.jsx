@@ -2,10 +2,10 @@ import { deleteDoc, doc } from "firebase/firestore";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { db } from "../../services/firebase";
+import { db } from "../../../services/firebase";
 import { MdOutlineEditCalendar } from 'react-icons/md'
 import { BsFillTrash3Fill } from "react-icons/bs";
-import '../ResponsiveCard/style.css'
+import '../OrderCard/style.css'
 
 const Card = styled.div`
   width: 90%;
@@ -34,7 +34,7 @@ const CardContent = styled.div`
   }
 `;
 
-export const ResponsiveCard = ({ item }) => {
+export const OrderCard = ({ item }) => {
 
   // const { cliente, produto, tema, valor, pago } = item;
 
@@ -42,11 +42,11 @@ export const ResponsiveCard = ({ item }) => {
 
   // const dataFormatada = data.toLocaleString();
 
-  const irParaUpdate = (id) => {
-    navigate(`/update/${id}`);
+  const goUpdateOrder = (id) => {
+    navigate(`/updateOrder/${id}`);
   }
 
-  const deletar = async (id) => {
+  const deleteOrder = async (id) => {
     const confirmacao = confirm(`Você tem certeza?`);
 
     if (confirmacao) {
@@ -81,12 +81,12 @@ export const ResponsiveCard = ({ item }) => {
         <div className="card-btn">
           <button
             className="card-btn-edit"
-            onClick={() => irParaUpdate(item.id)}>
+            onClick={() => goUpdateOrder(item.id)}>
             <MdOutlineEditCalendar />
           </button>
           <button
             className="card-btn-delete"
-            onClick={() => deletar(item.id)}>
+            onClick={() => deleteOrder(item.id)}>
             <BsFillTrash3Fill />
           </button>
         </div>

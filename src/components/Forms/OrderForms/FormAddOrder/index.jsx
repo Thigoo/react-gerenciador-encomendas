@@ -1,8 +1,8 @@
-import { doc, updateDoc } from 'firebase/firestore';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { db } from '../../services/firebase';
 import { useNavigate } from 'react-router-dom';
+import { Timestamp, addDoc, collection } from 'firebase/firestore';
+import { db } from '../../../../services/firebase';
 
 const Form = styled.form`
   display: flex;
@@ -32,43 +32,54 @@ const Button = styled.button`
   margin-top: 1rem;
 `;
 
-
-function FormUpdate({ id, clienteAntigo, produtoAntigo, temaAntigo, valorAntigo, pagoAntigo }) {
-
-  const [cliente, setCliente] = useState(clienteAntigo);
-  const [produto, setProduto] = useState(produtoAntigo);
-  const [tema, setTema] = useState(temaAntigo);
-  const [valor, setValor] = useState(valorAntigo);
-  const [pago, setPago] = useState(pagoAntigo === 'true');
+const FormAddOrder = () => {
+  const [cliente, setCliente] = useState('');
+  const [produto, setProduto] = useState('');
+  const [tema, setTema] = useState('');
+  const [valor, setValor] = useState('');
+  const [pago, setPago] = useState(false);
 
   const navigate = useNavigate();
 
-  const atualizar = async (e) => {
+  const adicionar = async (e) => {
     e.preventDefault();
 
-    const encDocRef = doc(db, 'encomendas', id);
+    // let encomendas = JSON.parse(localStorage.getItem('encomendas')) || [];
+
+    // encomendas.push({
+    //   id: new Date().getTime().toString(),
+    //   cliente: cliente,
+    //   tema: tema,
+    //   produto: produto,
+    //   valor: valor,
+    //   pago: pago
+    // })
+
+    // localStorage.setItem("encomendas", JSON.stringify(encomendas));
+
     try {
-      await updateDoc(encDocRef, {
+      await addDoc(collection(db, 'encomendas'), {
         cliente: cliente,
+        data: Timestamp.now(),
         produto: produto,
         tema: tema,
         valor: valor,
         pago: pago
-      })
-      alert('Produto atualizado com sucesso!')
+      });
+
       navigate('/');
     } catch (error) {
       alert(error);
     }
-  }
 
-  const handleChangePago = (e) => {
-    setPago(e.target.value === "true");
-    console.log("Valor de pago:", e.target.value);
+    setCliente('');
+    setProduto('');
+    setValor('');
+    setPago(false);
   };
 
   return (
-    <Form onSubmit={atualizar}>
+    <Form onSubmit={adicionar}>
       <Label>Cliente:</Label>
       <Input
         type="text"
@@ -76,18 +87,20 @@ function FormUpdate({ id, clienteAntigo, produtoAntigo, temaAntigo, valorAntigo,
         onChange={(e) => setCliente(e.target.value)}
         required
       />
-      <Label>Produto:</Label>
-      <Input
-        type="text"
-        value={produto}
-        onChange={(e) => setProduto(e.target.value)}
-        required
-      />
+
       <Label>Tema:</Label>
       <Input
         type="text"
         value={tema}
         onChange={(e) => setTema(e.target.value)}
+        required
+      />
+
+      <Label>Produto:</Label>
+      <Input
+        type="text"
+        value={produto}
+        onChange={(e) => setProduto(e.target.value)}
         required
       />
 
@@ -102,8 +115,7 @@ function FormUpdate({ id, clienteAntigo, produtoAntigo, temaAntigo, valorAntigo,
       <Label>Pago:</Label>
       <select
         value={pago.toString()}
-        // onChange={(e) => setPago(e.target.value)}
-        onChange={handleChangePago}
+        onChange={(e) => setPago(e.target.value === "true")}
         required
       >
         <option value="">Selecione</option>
@@ -111,10 +123,9 @@ function FormUpdate({ id, clienteAntigo, produtoAntigo, temaAntigo, valorAntigo,
         <option value="false">Não</option>
       </select>
 
-      <Button type="submit">Atualizar</Button>
+      <Button type="submit">Adicionar Encomenda</Button>
     </Form>
   );
+};
 
-}
-
-export default FormUpdate
+export default FormAddOrder;

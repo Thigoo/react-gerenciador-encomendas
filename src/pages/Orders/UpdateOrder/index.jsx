@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import SideBar from '../../components/SideBar'
-import Title from '../../components/Title'
-import FormUpdate from '../../components/FormUpdate'
 import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../../services/firebase';
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import { db } from '../../../services/firebase';
+import SideBar from '../../../components/SideBar';
+import Title from '../../../components/Title';
+import FormUpdateOrder from '../../../components/Forms/OrderForms/FormUpdateOrder';
 
-function Update() {
+function UpdateOrder() {
 
   const {id} = useParams();
   const [encomenda, setEncomenda] = useState(null);
@@ -39,7 +39,7 @@ function Update() {
         <Title title={'Editar Encomenda'} />
         <div className="create-content">
           {encomenda && (
-            <FormUpdate
+            <FormUpdateOrder
             id={id}
             clienteAntigo={encomenda.cliente}
             produtoAntigo={encomenda.produto}
@@ -53,6 +53,6 @@ function Update() {
   )
 }
 
-export default Update
+export default UpdateOrder;
 // Greywind - Swing and Sway (Official Music Video)
 
