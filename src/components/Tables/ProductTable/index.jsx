@@ -52,6 +52,8 @@ function ProductTable({ data }) {
                 <tr>
                     <Th>Produto</Th>
                     <Th>Valor</Th>
+                    <Th>Editar</Th>
+                    <Th>Excluir</Th>
                 </tr>
             </thead>
             <tbody>
