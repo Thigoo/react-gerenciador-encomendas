@@ -28,7 +28,6 @@
     .home-main {
         width: calc(100% - 230px);
     }
-
 }
 
 @media (max-width: 480px) {

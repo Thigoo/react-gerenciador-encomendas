@@ -1,0 +1,25 @@
+.create-container {
+    height: 100%;
+    display: flex;
+}
+
+.create-main {
+    margin-left: 230px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.create-content {
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+    .create-container {
+        display: block;
+    }
+    .create-main {
+        margin-left: 0;
+    }
+}

@@ -1,11 +1,10 @@
-import React from 'react'
-import { MdOutlineEditCalendar } from 'react-icons/md'
-import { BsFillTrash3Fill } from "react-icons/bs";
-import '../OrderCard/style.css'
-import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import { deleteDoc, doc } from 'firebase/firestore';
+import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { db } from '../../../services/firebase';
+import { MdOutlineEditCalendar } from 'react-icons/md';
+import { BsFillTrash3Fill } from 'react-icons/bs';
+import styled from 'styled-components';
 
 const Card = styled.div`
   width: 90%;
@@ -43,9 +42,9 @@ function ProductCard({ item }) {
     }
 
     const deleteProduct = async (id) => {
-        const confirm = confirm("Você tem certeza?");
+        const confirmation = confirm("Você tem certeza?");
 
-        if (confirm) {
+        if (confirmation) {
             const prodDocRef = doc(db, 'products', id);
             try {
                 await deleteDoc(prodDocRef);
@@ -57,10 +56,10 @@ function ProductCard({ item }) {
 
     return (
         <Card>
-            <CardTitle>{item.product}</CardTitle>
+            <CardTitle>Any title</CardTitle>
             <CardContent>
                 <div>
-                    <strong>Valor:</strong> {item.valor}
+                    <strong>Valor:</strong> Any value
                 </div>
                 <div className="card-btn">
                     <button

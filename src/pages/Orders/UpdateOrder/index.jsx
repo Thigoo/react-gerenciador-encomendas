@@ -5,6 +5,7 @@ import { db } from '../../../services/firebase';
 import SideBar from '../../../components/SideBar';
 import Title from '../../../components/Title';
 import FormUpdateOrder from '../../../components/Forms/OrderForms/FormUpdateOrder';
+import '../UpdateOrder/style.css'
 
 function UpdateOrder() {
 

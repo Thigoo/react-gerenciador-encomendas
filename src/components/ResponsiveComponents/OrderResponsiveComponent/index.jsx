@@ -69,4 +69,5 @@ const OrderResponsiveComponent = () => {
   );
 };
 
-export default OrderResponsiveComponent;
+export default 
+OrderResponsiveComponent;

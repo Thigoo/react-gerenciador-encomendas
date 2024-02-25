@@ -6,14 +6,14 @@ import Title from '../../components/Title'
 import OrderResponsiveComponent from '../../components/ResponsiveComponents/OrderResponsiveComponent'
 
 function Home() {
-  
+
   return (
     <div className='home-container'>
       <SideBar />
       <div className='home-main'>
-        <Title title={'Minhas encomendas'}/>
+        <Title title={'Minhas encomendas'} />
         <div className="home-button-add">
-          <Button title={'Adicionar'} rota={'/addOrder'}/>
+          <Button title={'Adicionar'} rota={'/addOrder'} />
         </div>
         <div className="home-content">
           <OrderResponsiveComponent />

@@ -11,3 +11,31 @@
     text-align: center;
     width: 100%;
 }
+
+.produtos-content {
+    width: 90%;
+    margin-top: 1rem;
+}
+
+.produtos-btn-add {
+    display: flex;
+    justify-content: flex-end;
+    width: 85%;
+}
+
+@media screen and (max-width: 768px) {
+    .produtos-main {
+        width: calc(100% - 230px);
+    }
+}
+
+@media (max-width: 480px) {
+    .produtos-container {
+        display: block;
+    }
+
+    .produtos-main {
+        margin-left: 0;
+        width: 100%;
+    }
+}
