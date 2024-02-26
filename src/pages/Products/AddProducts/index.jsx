@@ -1,8 +1,8 @@
 import React from 'react'
-import SideBar from '../../components/SideBar'
-import Title from '../../components/Title'
-import "../AddProducts/style.css"
-import FormAddProd from '../../components/Forms/ProductForms/FormAddProd'
+import SideBar from '../../../components/SideBar'
+import Title from '../../../components/Title'
+import "./style.css"
+import FormAddProd from '../../../components/Forms/ProductForms/FormAddProd'
 
 function AddProducts() {
   return (

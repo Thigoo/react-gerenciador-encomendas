@@ -1,0 +1,25 @@
+.product-container {
+    height: 100%;
+    display: flex;
+}
+
+.product-main {
+    margin-left: 230px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.product-content {
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+    .product-container {
+        display: block;
+    }
+    .product-main {
+        margin-left: 0;
+    }
+}

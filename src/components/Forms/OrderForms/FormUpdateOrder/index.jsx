@@ -55,7 +55,7 @@ function FormUpdate({ id, clienteAntigo, produtoAntigo, temaAntigo, valorAntigo,
         valor: valor,
         pago: pago
       })
-      alert('Produto atualizado com sucesso!')
+      alert('Encomenda atualizada com sucesso!')
       navigate('/');
     } catch (error) {
       alert(error);

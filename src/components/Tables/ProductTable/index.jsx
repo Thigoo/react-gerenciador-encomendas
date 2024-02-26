@@ -30,7 +30,7 @@ function ProductTable({ data }) {
     const navigate = useNavigate();
 
     const goUpdateProduct = (id) => {
-        navigate(`/productUpdate/${id}`)
+        navigate(`/updateProduct/${id}`)
     }
 
     const deleteProduct = async (id) => {

@@ -4,7 +4,8 @@ import Home from '../pages/Home'
 import UpdateOrder from '../pages/Orders/UpdateOrder'
 import AddOrder from '../pages/Orders/AddOrder'
 import Products from '../pages/Products'
-import AddProducts from '../pages/AddProducts'
+import AddProducts from '../pages/Products/AddProducts'
+import UpdateProduct from '../pages/Products/UpdateProduct'
 
 function AppRouter() {
   return (
@@ -13,8 +14,8 @@ function AppRouter() {
         <Route path='/updateOrder/:id' element={<UpdateOrder />}></Route>
         <Route path='/addOrder' element={<AddOrder />}></Route>
         <Route path='/products' element={<Products />}></Route>
-        <Route path='/addProducts' element={<AddProducts />}></Route>
-        <Route path='/updateProducts' element={<AddProducts />}></Route>
+        <Route path='/addProduct' element={<AddProducts />}></Route>
+        <Route path='/updateProduct/:id' element={<UpdateProduct />}></Route>
     </Routes>
   )
 }
