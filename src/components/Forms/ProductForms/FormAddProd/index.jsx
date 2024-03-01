@@ -49,7 +49,7 @@ function FormAddProd() {
         valor: valor,
         data: Timestamp.now()
       })
-      navigate('/products');
+      navigate('/product');
     } catch (error) {
       console.log(error);
     }

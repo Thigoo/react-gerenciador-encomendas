@@ -10,13 +10,13 @@ function Login() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [user, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         if(user) navigate('/');
-    }, [user]);
+    }, [user, navigate]);
 
   return (
     <div className="login">

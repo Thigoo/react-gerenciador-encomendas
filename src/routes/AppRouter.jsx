@@ -7,6 +7,8 @@ import Products from '../pages/Products'
 import AddProducts from '../pages/Products/AddProducts'
 import UpdateProduct from '../pages/Products/UpdateProduct'
 import Login from '../pages/Login'
+import Register from '../pages/Register'
+import ResetPassword from '../pages/ResetPassword'
 
 function AppRouter() {
   return (
@@ -18,6 +20,8 @@ function AppRouter() {
         <Route path='/addProduct' element={<AddProducts />}></Route>
         <Route path='/updateProduct/:id' element={<UpdateProduct />}></Route>
         <Route path='/login' element={<Login />}></Route>
+        <Route path='/register' element={<Register />}></Route>
+        <Route path='/resetPassword' element={<ResetPassword />}></Route>
     </Routes>
   )
 }

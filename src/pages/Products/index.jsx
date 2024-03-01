@@ -12,7 +12,7 @@ function Produtos() {
         <div className="produtos-main">
             <Title  title={"Meus Produtos"}/>
             <div className="produtos-btn-add">
-                <Button title={"Adicionar"} rota={"/addProducts"}/>
+                <Button title={"Adicionar"} rota={"/addProduct"}/>
             </div>
             <div className="produtos-content">
                 <ProductResponsiveComponent />
