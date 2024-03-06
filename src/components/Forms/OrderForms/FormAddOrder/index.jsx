@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { Timestamp, addDoc, collection } from 'firebase/firestore';
-import { db } from '../../../../services/firebase';
+import { auth, db } from '../../../../services/firebase';
 
 const Form = styled.form`
   display: flex;
@@ -44,32 +44,24 @@ const FormAddOrder = () => {
   const adicionar = async (e) => {
     e.preventDefault();
 
-    // let encomendas = JSON.parse(localStorage.getItem('encomendas')) || [];
+    if (auth.currentUser) {
+      try {
+        await addDoc(collection(db, 'encomendas'), {
+          cliente: cliente,
+          data: Timestamp.now(),
+          produto: produto,
+          tema: tema,
+          valor: valor,
+          pago: pago,
+          useId: auth.currentUser.uid
+        });
 
-    // encomendas.push({
-    //   id: new Date().getTime().toString(),
-    //   cliente: cliente,
-    //   tema: tema,
-    //   produto: produto,
-    //   valor: valor,
-    //   pago: pago
-    // })
-
-    // localStorage.setItem("encomendas", JSON.stringify(encomendas));
-
-    try {
-      await addDoc(collection(db, 'encomendas'), {
-        cliente: cliente,
-        data: Timestamp.now(),
-        produto: produto,
-        tema: tema,
-        valor: valor,
-        pago: pago
-      });
-
-      navigate('/');
-    } catch (error) {
-      alert(error);
+        navigate('/home');
+      } catch (error) {
+        alert(error);
+      }
+    } else {
+      alert('Usuário não encontrado!');
     }
 
     setCliente('');

@@ -3,7 +3,7 @@ import '../FormAddProd/style.css'
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { Timestamp, addDoc, collection } from 'firebase/firestore';
-import { db } from '../../../../services/firebase';
+import { auth, db } from '../../../../services/firebase';
 
 const Form = styled.form`
   display: flex;
@@ -43,31 +43,36 @@ function FormAddProd() {
   const addProduct = async (e) => {
     e.preventDefault();
 
-    try {
-      await addDoc(collection(db, 'products'), {
-        produto: produto,
-        valor: valor,
-        data: Timestamp.now()
-      })
-      navigate('/product');
-    } catch (error) {
-      console.log(error);
+    if (auth.currentUser) {
+      try {
+        await addDoc(collection(db, 'products'), {
+          produto: produto,
+          valor: valor,
+          data: Timestamp.now(),
+          useId: auth.currentUser.uid
+        })
+        navigate('/product');
+      } catch (error) {
+        console.log(error);
+      }
+      setProduto('');
+      setValor('');
+    } else {
+      alert('Usuário não encontrado!');
     }
-    setProduto('');
-    setValor('');
   }
 
   return (
     <Form onSubmit={addProduct}>
       <Label>Produto:</Label>
-      <Input 
+      <Input
         type='text'
         value={produto}
         onChange={(e) => setProduto(e.target.value)}
         required
       />
       <Label>Valor:</Label>
-      <Input 
+      <Input
         type='text'
         value={valor}
         onChange={(e) => setValor(e.target.value)}

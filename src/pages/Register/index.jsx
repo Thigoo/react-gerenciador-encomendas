@@ -15,12 +15,12 @@ function Register() {
     const navigate = useNavigate();
 
     const register = () => {
-        if(!name) alert('Por favor insira seu nome');
+        if(!name) alert("Preencha o seu nome");
         registerWithEmailAndPassword(name, email, password);
-    } 
+    }
 
     useEffect(() => {
-        if(user) navigate('/');
+        if(user) navigate('/home');
     }, [user, navigate]);
 
   return (
@@ -57,7 +57,7 @@ function Register() {
                 Cadastrar com Google
             </button>
             <div>
-                Já possui uma conta? <Link to='/login'>Login</Link>
+                Já possui uma conta? <Link to='/'>Login</Link>
             </div>
         </div>
     </div>

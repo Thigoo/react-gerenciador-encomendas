@@ -13,7 +13,7 @@ function ResetPassword() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (user) navigate('/');
+        if (user) navigate('/home');
     }, [user, navigate]);
 
     return (

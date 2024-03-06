@@ -13,15 +13,15 @@ import ResetPassword from '../pages/ResetPassword'
 function AppRouter() {
   return (
     <Routes>
-        <Route path='/' element={<Home />}></Route>
+        <Route path='/' element={<Login />}></Route>
         <Route path='/updateOrder/:id' element={<UpdateOrder />}></Route>
         <Route path='/addOrder' element={<AddOrder />}></Route>
         <Route path='/products' element={<Products />}></Route>
         <Route path='/addProduct' element={<AddProducts />}></Route>
         <Route path='/updateProduct/:id' element={<UpdateProduct />}></Route>
-        <Route path='/login' element={<Login />}></Route>
+        <Route path='/home' element={<Home />}></Route>
         <Route path='/register' element={<Register />}></Route>
-        <Route path='/resetPassword' element={<ResetPassword />}></Route>
+        <Route path='/reset' element={<ResetPassword />}></Route>
     </Routes>
   )
 }

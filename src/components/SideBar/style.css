@@ -2,10 +2,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     background: gray;
     height: 100px;
     margin-bottom: 2rem;
 }
+
 
 .links {
     display: flex;
@@ -19,4 +21,10 @@
     color: #fafafa;
     text-decoration: none;
     margin-top: .7rem;
+}
+
+.logout button {
+    position: absolute;
+    bottom: 1rem;
+    padding: 1rem;
 }

@@ -13,6 +13,10 @@
     background-color: #dcdcdc;
     padding: 30px;
   }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
   .login-input {
     padding: 10px;
     font-size: 18px;

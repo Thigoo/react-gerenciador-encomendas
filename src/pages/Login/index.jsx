@@ -14,13 +14,24 @@ function Login() {
 
     const navigate = useNavigate();
 
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            navigate('/home');
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
     useEffect(() => {
-        if(user) navigate('/');
+        if (user) navigate('/home');
     }, [user, navigate]);
 
-  return (
+    return (
     <div className="login">
         <div className="login-container">
+            <form onSubmit={handleLogin}>
             <label>Email:</label>
             <input 
                 type="text"
@@ -35,12 +46,15 @@ function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder='Password' />
-        </div>
+        
         <button 
             className='login-btn'
-            onClick={() => signInWithEmailAndPassword(email, password)}>
+            type='submit'>
             Login
         </button>
+        </form>
+        </div>
+        
         <button 
             className='login-btn login-google'
             onClick={signInWithGoogle}>
@@ -52,7 +66,7 @@ function Login() {
         <div>
             Não possui uma conta? <Link to='/register'>Cadastre-se</Link>
         </div>
-    </div>
+    </div >
   )
 }
 

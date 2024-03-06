@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 import '../SideBar/style.css'
+import { logout } from '../../services/firebase';
 
 const SidebarWrapper = styled.div`
   width: 230px; /* Largura da barra lateral */
@@ -19,17 +20,24 @@ const SidebarWrapper = styled.div`
     })
 `;
 
-function SideBar() {
+function SideBar({name}) {
 
   return (
     <SidebarWrapper>
       <div className="header">
-        <img src="#" alt="Logo" />
+        <div className="img">
+          <img src="#" alt="Logo" />
+        </div>
+
+        <p>{name}</p>
       </div>
       <div className='links'>
-      <Link to={'/'} className='link'>Encomendas</Link>
-      <Link to={'/products'} className='link'>Produtos</Link>
+        <Link to={'/home'} className='link'>Encomendas</Link>
+        <Link to={'/products'} className='link'>Produtos</Link>        
       </div>
+      <div className="logout">
+        <button className='logout-btn' onClick={logout}>Sair</button>
+        </div>
     </SidebarWrapper>
   )
 }

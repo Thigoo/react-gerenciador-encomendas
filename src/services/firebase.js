@@ -9,12 +9,12 @@ import {
 } from 'firebase/firestore';
 import { 
   getAuth,
-  GoogleAuthProvider,
   signInWithPopup,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
-  signOut
+  signOut,
+  GoogleAuthProvider
  } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -68,11 +68,12 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
     await addDoc(collection(db, 'users'), {
-      uid: user.id,
+      uid: user.uid,
       name,
       authProvider: 'local',
       email
     })
+    alert('Registrado!')
   } catch (error) {
     console.log(error);
     alert(error.message);
@@ -89,11 +90,9 @@ const sendPasswordReset = async (email) => {
   }
 }
 
-const logout = async () => {
+const logout = () => {
   signOut(auth);
 }
-
-
 
 export { 
   db,

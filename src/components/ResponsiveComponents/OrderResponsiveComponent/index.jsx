@@ -16,9 +16,7 @@ const OrderResponsiveComponent = () => {
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-  const [encomendas, setEncomendas] = useState([]);
-
-  // const [gatilho, setGatilho] = useState(false);
+  const [encomendas, setEncomendas] = useState([]);  
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,14 +41,7 @@ const OrderResponsiveComponent = () => {
         }
       })))
     })
-
-    // const encomendasLocal = JSON.parse(localStorage.getItem('encomendas'));
-    // setEncomendas(encomendasLocal);
   }, []);
-
-  // const dispararGatilho = () => {
-  //   setGatilho((estadoAntigo) => !estadoAntigo);
-  // }
 
   if(encomendas.length === 0) {
     return <NoOrders title={'Oops, nenhuma encomenda cadastrada.'} description={'Adicione uma nova encomenda'}/>
