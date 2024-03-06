@@ -1,7 +1,7 @@
-import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { db } from '../../../services/firebase';
+import { auth, db } from '../../../services/firebase';
 import NoOrders from '../../NoOrders';
 import ProductTable from '../../Tables/ProductTable';
 import ProductCard from '../../Cards/ProductCard';
@@ -31,16 +31,28 @@ const ProductResponsiveComponent = () => {
     }, []);
 
     useEffect(() => {
-        const q = query(collection(db, 'products'), orderBy('data', 'desc'));
-        onSnapshot(q, (querySnapshot) => {
-            setProducts(querySnapshot.docs.map(doc => ({
-                id: doc.id,
-                product: {
-                    ...doc.data(),
-                    data: doc.data().data.toDate()
-                }
-            })))
-        })
+        const fetchProducts = async () => {
+            try {
+                const currentUserUid = auth.currentUser.uid;
+
+                const q = query(collection(db, 'products'),
+                where('userId', '==', currentUserUid),
+                orderBy('data', 'desc'));
+
+                onSnapshot(q, (querySnapshot) => {
+                    setProducts(querySnapshot.docs.map(doc => ({
+                        id: doc.id,
+                        product: {
+                            ...doc.data(),
+                            data: doc.data().data.toDate()
+                        }
+                    })))
+                })
+            } catch (error) {
+                console.log("Erro ao buscar produtos: ", error.message);
+            }
+        }
+        fetchProducts();
     }, []);
 
     if (products.length === 0) {
